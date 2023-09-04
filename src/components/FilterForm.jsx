@@ -15,17 +15,21 @@ import PropTypes from "prop-types";
  * @param {FilterForm} props
  */
 
-const FilterForm = ({ label, value, todo }) => {
+const FilterForm = ({ label, value, checked, onChange }) => {
+  const handleChange = () => {
+    onChange(value);
+  };
   return (
     <div className="checkbox-option">
       <input
         type="radio"
         name="filter-label"
         value={value}
-        id={label}
-        onChange={(e) => todo.state == "active"}
+        id={value}
+        checked={checked}
+        onChange={handleChange}
       />
-      <label htmlFor={label}>{label}</label>
+      <label htmlFor={value}>{label}</label>
     </div>
   );
 };

@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import Button from "./Button";
+import PropTypes from "prop-types";
 
-const TodoForm = ({ addTodo }) => {
+const TodoForm = ({ addTask }) => {
   const [todo, setTodo] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!todo) return alert("Invalid input !");
-    addTodo(todo);
+    addTask(todo);
     setTodo("");
   };
-
+  // 1 o input phai co 2 thuoc tinh: value va onChange
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -25,4 +26,7 @@ const TodoForm = ({ addTodo }) => {
   );
 };
 
+TodoForm.propTypes = {
+  addTask: PropTypes.func.isRequired,
+};
 export default TodoForm;

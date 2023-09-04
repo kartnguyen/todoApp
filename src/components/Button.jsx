@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
  * @property {React.ReactNode} content - Noi dung cua nut
  *
  * @property {React.ReactNode} onClick - Hanh dong cua nut
+ *
  */
 
 /**
@@ -16,9 +17,9 @@ import PropTypes from "prop-types";
  * @param {React.PropsWithChildren<ButtonProps>} props
  */
 
-const Button = ({ id, variant, content, onClick }) => {
+const Button = ({ variant, content, onClick }) => {
   return (
-    <button id={id} className={variant} onClick={onClick}>
+    <button className={variant} onClick={onClick}>
       {content}
     </button>
   );

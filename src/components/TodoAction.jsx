@@ -1,12 +1,22 @@
 import React from "react";
 import Button from "./Button";
+import PropTypes from "prop-types";
 
-const TodoAction = ({ setTodoList, todoList }) => {
+/**
+ * @typedef TodoActionComponent - Trien khai hanh dong xoa toan bo task
+ *
+ * @returns
+ */
+
+/**
+ * @param {React.Function} setTodoList - Ham cap nhat gia tri task
+ * @param {React.Array} todoList - Mang cac task hien co
+ */
+
+const TodoAction = ({ setTodoList, todoList, pendingTask }) => {
   const handleDeleteAll = () => {
-    if (todoList.length > 0) {
-      if (confirm("Do you want to delete all the tasks?")) {
-        setTodoList([]);
-      }
+    if (confirm("Do you want to delete all the tasks?")) {
+      setTodoList([]);
     }
   };
   const todoListLength = todoList.length;
@@ -16,8 +26,8 @@ const TodoAction = ({ setTodoList, todoList }) => {
       {todoListLength > 0 ? (
         <>
           <p>
-            You have <b style={{ color: "red" }}>{todoListLength}</b> pennding
-            task !
+            You have <b style={{ color: "red" }}>{pendingTask}</b> pennding task
+            !
           </p>
           <Button
             variant="danger"
@@ -34,4 +44,8 @@ const TodoAction = ({ setTodoList, todoList }) => {
   );
 };
 
+TodoAction.propTypes = {
+  setTodoList: PropTypes.func.isRequired,
+  todoList: PropTypes.array.isRequired,
+};
 export default TodoAction;

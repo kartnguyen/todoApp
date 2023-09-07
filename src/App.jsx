@@ -8,40 +8,38 @@ import { useState } from "react";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("all");
+  const [editingTaskId, setEditingTaskId] = useState(null);
 
   const addTask = (title) => {
     const newTask = {
-      id: Date.now().toString(),
+      id: Date.now(),
       title,
       completed: false,
     };
     setTasks([...tasks, newTask]);
   };
+
   const deleteTask = (id) => {
     if (confirm("Are you sure you want to delete this task?")) {
-      // setTasks(tasks.filter((task) => task.id !== id));
-      const newTodo = [...tasks];
-      newTodo.splice(id, 1);
-      setTasks(newTodo);
+      setTasks(tasks.filter((task) => task.id !== id));
     }
   };
+  const editTask = (id) => {
+    setEditingTaskId(id);
+  };
+
   const toggleComplete = (id) => {
-    setTasks(
-      tasks.map((task) => {
-        if (task.id === id) {
-          return {
-            ...task,
-            completed: !task.completed,
-          };
-        }
-        return task;
-      })
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
     );
   };
 
   const handleFilter = (filter) => {
     setFilter(filter);
   };
+
   const filterTask = tasks.filter((task) =>
     filter === "all"
       ? true
@@ -76,15 +74,11 @@ function App() {
             onChange={handleFilter}
           />
         </div>
-        {/* <div className="todo_list">
-          {tasks.map((todo, id) => (
-            <TodoList key={id} id={id} todo={todo} deleteTask={deleteTask} />
-          ))}
-        </div> */}
         <TodoList
           task={filterTask}
           deleteTask={deleteTask}
           onToggle={toggleComplete}
+          editTask={editTask}
         />
         <TodoAction
           setTodoList={setTasks}

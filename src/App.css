@@ -37,7 +37,6 @@ button:hover {
 .primary {
   background-color: blue;
   color: #fff;
-  flex-basis: 20%;
 }
 
 .input-form {
@@ -85,17 +84,41 @@ label {
   overflow-x: hidden;
 }
 
-.item label {
+.item .label {
   cursor: pointer;
+  display: flex;
+  width: 100%;
+}
+
+.item .edit-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item .edit-container input {
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  border: 1px solid #bdbdbd;
+}
+
+.item .edit-container .primary {
+  margin-right: 8px;
+}
+
+.item .button-item {
+  transform: translateX(120%);
   display: flex;
 }
 
-.item button {
-  transform: translateX(120%);
+.item .button-item button:first-child {
+  margin-right: 8px;
 }
 
-.item:hover button {
-  display: block;
+.item:hover .button-item {
   transform: translateX(0);
   transition: transform 0.35s linear;
 }

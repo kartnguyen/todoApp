@@ -19,6 +19,7 @@ const FilterForm = ({ label, value, checked, onChange }) => {
   const handleChange = () => {
     onChange(value);
   };
+
   return (
     <div className="checkbox-option">
       <input
